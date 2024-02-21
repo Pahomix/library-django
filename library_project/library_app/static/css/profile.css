@@ -1,0 +1,22 @@
+.profile-info {
+  color: #fff;
+  width: 100%;
+
+}
+
+.profile-info form {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  margin-bottom: 2rem;
+}
+
+.profile-content {
+
+  width: 100%;
+  padding: 0 20px 0 20px;
+}
+
+ul{
+  list-style: none;
+}
+

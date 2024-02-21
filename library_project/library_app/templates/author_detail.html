@@ -1,0 +1,27 @@
+{% extends "base.html" %} {%load static%} {% block links %}<link
+rel="stylesheet" href="{% static "css/author.css" %}" />{% endblock %} 
+{% block content %}
+<section class="author-detail">
+    <div>
+      <p>Имя</p>
+      {{ author.first_name }}
+    </div>
+    <div>
+      <p>Фамилия</p>
+      {{ author.last_name }}
+    </div>
+    <div>
+      <p>Дата рождения</p>
+      {{ author.date_of_birth }}
+    </div>
+    <div>
+      <p>Дата смерти</p>
+      {{ author.date_of_death }}
+    </div>
+    <div></div>
+    <div class="author-biography">
+      <p>Биография</p>
+      {{ author.biography }}
+    </div>
+</section>
+{% endblock %}

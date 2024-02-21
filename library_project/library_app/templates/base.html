@@ -1,0 +1,50 @@
+{%load static%}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    {% block links %}{% endblock %}
+    <link rel="stylesheet" href="{% static "css/style.css" %}" />
+    <title>{%block title%} {% endblock %}</title>
+  </head>
+  <body>
+    <div class="wrapper">
+      <header>
+        <nav>
+          <ul>
+            {% if user.is_authenticated %}
+              {% if user.role == "admin" %}
+                  <li><a href="{% url 'books' %}">Книги</a></li>
+                  <li><a href="{% url 'history_list' %}">История</a></li>
+                  <li><a href="{% url 'author_list' %}">Каталог авторов</a></li>
+                  <li><a href="{% url 'user_list' %}">Пользователи</a></li>
+                  <li><a href="{% url 'profile' %}">Аккаунт пользователя</a></li>
+              {% elif user.role == "librarian" %}
+                  <li><a href="{% url 'books' %}">Книги</a></li>
+                  <li><a href="{% url 'history_list' %}">История</a></li>
+                  <li><a href="{% url 'author_list' %}">Каталог авторов</a></li>
+                  <li><a href="{% url 'profile' %}">Аккаунт пользователя</a></li>
+              {% elif user.role == "reader" %}
+                  <li><a href="{% url 'books' %}">Каталог книг</a></li>
+                  <li><a href="{% url 'profile' %}">Аккаунт пользователя</a></li>
+              {% else %}
+                  <li><a href="{% url 'books' %}">Книги</a></li>
+                  <li><a href="{% url 'history_list' %}">История</a></li>
+                  <li><a href="{% url 'author_list' %}">Каталог авторов</a></li>
+                  <li><a href="{% url 'user_list' %}">Пользователи</a></li>
+                  <li><a href="{% url 'profile' %}">Аккаунт пользователя</a></li>
+              {% endif %}
+              <li><a href="{% url 'logout'%}">Выйти</a></li>
+          {% endif %}
+          </ul>
+        </nav>
+      </header>
+      <main>
+        {% block content %}{% endblock %}
+      </main>
+      <footer></footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+  {% block links %}
+    <link rel="stylesheet" href="{% static "css/author.css" %}" />
+  {% endblock %}
+  <section class="author-edit">
+    <form action="{% url 'author_create' %}" method="post" class="author-form">
+      {% csrf_token %}
+        <div>
+          <label for="id_first_name">Имя</label>
+          <input type="text" id="id_first_name" name="first_name">
+        </div>
+        <div>
+          <label for="id_last_name">Фамилия</label>
+          <input type="text" id="id_last_name" name="last_name">
+        </div>
+        <div>
+          <label for="id_date_of_birth">Дата рождения</label>
+          <input type="date" id="id_date_of_birth" name="date_of_birth">
+        </div>
+        <div>
+          <label for="id_date_of_death">Дата смерти</label>
+          <input type="date" id="id_date_of_death" name="date_of_death">
+        </div>
+        <div></div>
+      <div class="author-biography">
+        <label for="id_biography">Биография</label>
+        <textarea id="id_biography" name="biography"></textarea>
+      </div>
+      <div class="submit-button">
+        <button type="submit">Добавить автора</button>
+      </div>
+    </form>
+  </section>
+{% endblock %}

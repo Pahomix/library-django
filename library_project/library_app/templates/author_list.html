@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{%load static%}
+{% block links %}<link rel="stylesheet" href="{% static "css/author.css" %}" />{% endblock %}
+{% block content %}
+<section class="author-list">
+  <form action="{% url 'author_create' %}" method="get">
+    <button type="submit">Добавить</button>
+  </form>
+  <form method="get" action="{% url 'author_list' %}">
+    <label for="sort_by">Сортировать по:</label>
+    <select name="sort_by" id="sort_by">
+        <option value="first_name">Имя</option>
+        <option value="last_name">Фамилия</option>
+        <option value="date_of_birth">Дата рождения</option>
+        <option value="date_of_death">Дата смерти</option>
+    </select>
+    <button type="submit">Применить</button>
+</form>
+  {% for author in authors %}
+  <div class="author">
+    <div class="author-header">
+      <p>Автор</p>
+    </div>
+    <div class="author-info">
+      <p>{{author.first_name}} {{author.last_name}}</p>
+      {% if user.role == 'admin' or user.role == 'librarian' %}
+          <div class="author-btns">
+            <form action="{% url 'author_edit' pk=author.pk %}" method="get">
+              <button type="submit">Изменить</button>
+            </form>
+            <form action="{% url 'author_delete' author.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Удалить</button>
+            </form>
+          </div>
+        {% endif %}
+    </div>
+  </div>
+    {% endfor %}
+</section>
+{% endblock %}

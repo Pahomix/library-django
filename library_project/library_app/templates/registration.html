@@ -1,0 +1,32 @@
+{% extends "base.html" %} {%load static%} {% block content %}
+{% block links %}<link rel="stylesheet" href="{% static "css/registration.css" %}" />{% endblock %}
+
+<div class="registration">
+  <h1>Регистрация</h1>
+  {% if form.errors %}
+  <div class="errors">
+    {% for field in form %}
+    {% for error in field.errors %}
+    <p>{{ error }}</p>
+    {% endfor %}
+    {% endfor %}
+  </div>
+  {% endif %}
+  <form action="" method="post">
+    {% csrf_token %}
+    <div>
+      <input type="text" name="username" placeholder="Логин">
+    </div>
+    <div>
+      <input type="password" name="password1" placeholder="Пароль">
+    </div>
+    <div>
+      <input type="password" name="password2" placeholder="Подтверждение пароля">
+    </div>
+    <button type="submit" value="Создать аккаунт" class="btn">
+      Создать аккаунт
+    </button>
+    <a href="{% url 'auth' %}">Авторизоваться</a>
+  </form>
+</div>
+{% endblock %}

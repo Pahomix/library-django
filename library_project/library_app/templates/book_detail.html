@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{%load static%}
+{% block links %}<link rel="stylesheet" href="{% static "css/book.css" %}" />{% endblock %}
+{% block content %}
+<section class="book-detail">
+  <div class="book-detail-header">
+    <p>Название книги</p>
+    <p>Жанр книги</p>
+    <p>Автор книги</p>
+  </div>
+  <div class="book-detail-info">
+    <p>{{book.title}}</p>
+    <p>{{book.genre}}</p>
+    <a>{{book.author}}</a>
+  </div>
+  <div class="book-detail-header">
+    <p>Год выпуска</p>
+    <p>ISBN</p>
+    <p>Издание книги</p>
+  </div>
+  <div class="book-detail-info">
+    <p>{{book.publication_year}}</p>
+    <p>{{book.unique_code}}</p>
+    <p>{{book.edition}}</p>
+  </div>
+</section>
+{% endblock %}

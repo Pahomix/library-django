@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{%load static%}
+{% block links %}<link rel="stylesheet" href="{% static "css/history.css" %}" />{% endblock %}
+
+{% block content %}
+<section class="history-edit">
+  <form method="post">
+    {% csrf_token %}
+    <label for="id_user">Логин пользователя</label>
+    {{ form.user }}
+    <label for="id_book">Книга</label>
+    {{ form.book }}
+    <label for="id_loan_date">Дата выдачи</label>
+    {{ form.loan_date }}
+    <label for="id_return_date">Дата возврата</label>
+    {{ form.return_date }}
+    <button type="submit">Сохранить</button>
+  </form>
+</section>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends "base.html" %} {%load static%} {% block links %}<link
+rel="stylesheet" href="{% static "css/book.css" %}" />{% endblock %} 
+{% block content %}
+<section class="book-edit">
+  <form method="post">
+    {% csrf_token %}
+    <div>
+      <label for="id_title">Название:</label>
+      {{ form.title }}
+    </div>
+    <div>
+      <label for="id_genre">Жанр:</label>
+      {{ form.genre }}
+    </div>
+    <div>
+      <label for="id_author">Автор:</label>
+      {{ form.author }}
+    </div>
+    <div></div>
+    <div>
+      <label for="id_publication_year">Год публикации:</label>
+      {{ form.publication_year }}
+    </div>
+    <div>
+      <label for="id_unique_code">Уникальный код</label>
+      {{ form.unique_code }}
+    </div>
+    <div>
+      <label for="id_edition">Издание:</label>
+      {{ form.edition }}
+    </div>
+    <div></div>
+    <button type="submit">Добавить книгу</button>
+  </form>
+</section>
+{% endblock %}

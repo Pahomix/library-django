@@ -1,0 +1,26 @@
+{% extends "base.html" %} {%load static%}
+{% block links %}<link rel="stylesheet" href="{% static "css/user.css" %}" />{% endblock %}
+{% block content %}
+<section class="books-list">
+  {% for user in users %}
+    <div class="book">
+      <div class="book-header">
+        <p>Логин</p>
+        <p>Почта</p>
+        <p>Роль</p>
+      </div>
+      <div class="book-info">
+        <a href={% url 'user_edit' pk=user.pk %}>{{user.username}}</a>
+        <p>{{user.email}}</p>
+        <p>{{user.role}}</p>
+          <div class="book-btns">
+            <form action="{% url 'user_delete' user.id %}" method="post">
+              {% csrf_token %}
+              <button type="submit">Удалить</button>
+            </form>
+          </div>
+      </div>
+    </div>
+    {% endfor %}
+</section>
+{% endblock %}

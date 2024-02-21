@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block links %}<link rel="stylesheet" href="{% static "css/user.css" %}" />{% endblock %}
+{% block content %}
+<section class="history-edit">
+  <form method="post">
+    {% csrf_token %}
+    <div>
+      <label for="id_username">Логин:</label>
+      <input type="text" id="id_username" name="username" value="{{ form.username.value }}">
+    </div>
+    <div>
+      <label for="id_password">Пароль:</label>
+      <input type="password" id="id_password" name="password">
+    </div>
+    <div>
+      <label for="id_role">Роль:</label>
+      <select id="id_role" name="role">
+        <option value="reader" {% if form.role.value == "reader" %} selected {% endif %}>Читатель</option>
+        <option value="librarian" {% if form.role.value == "librarian" %} selected {% endif %}>Библиотекарь</option>
+        <option value="admin" {% if form.role.value == "admin" %} selected {% endif %}>Администратор</option>
+      </select>
+    </div>
+    {% if user.role != "reader" %}
+      <button type="submit">Сохранить</button>
+    {% endif %}
+  </form>
+  <section>
+{% endblock %}

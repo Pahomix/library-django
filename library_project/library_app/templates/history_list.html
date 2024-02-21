@@ -1,0 +1,47 @@
+{% extends "base.html" %} {%load static%} {% block links %}<link
+rel="stylesheet" href="{% static "css/history.css" %}" />{% endblock %} 
+{% block content %}
+<div class="content">
+  <form action="{% url 'history_create' %}" method="get">
+    <button type="submit">Добавить</button>
+  </form>
+  <form method="get" action="{% url 'history_list' %}">
+    <label for="sort_by">Сортировать по:</label>
+    <select name="sort_by" id="sort_by">
+      <option value="loan_date">Дата выдачи</option>
+      <option value="return_date">Дата возврата</option>
+    </select>
+    <button type="submit">Применить</button>
+  </form>
+  <section class="history-list">
+    {% for history in histories %}
+    <div class="history">
+      <div class="history-header">
+        <p>Логин пользователя</p>
+        <p>Название книги</p>
+        <p>Дата выдачи</p>
+        <p>Дата возврата</p>
+      </div>
+      <div class="history-info">
+        <p>{{ history.user }}</p>
+        <p>{{ history.book }}</p>
+        <p>{{ history.loan_date }}</p>
+        <p>{{ history.return_date }}</p>
+        {% if user.role == 'admin' or user.role == 'librarian' %}
+        <div class="history-btns">
+          <form action="{% url 'history_edit' pk=history.pk %}" method="get">
+            <button type="submit">Изменить</button>
+          </form>
+          <form action="{% url 'history_delete' history.id %}" method="post">
+            {% csrf_token %}
+            <button type="submit">Удалить</button>
+          </form>
+        </div>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </section>
+</div>
+
+{% endblock %}

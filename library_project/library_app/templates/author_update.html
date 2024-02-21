@@ -1,0 +1,33 @@
+{% extends "base.html" %} {%load static%} {% block links %}<link
+rel="stylesheet" href="{% static "css/author.css" %}" />{% endblock %} 
+{% block content %}
+<section class="author-edit">
+  <form method="post" class="author-form">
+    {% csrf_token %}
+    <div>
+      <label for="id_first_name">Имя</label>
+      {{ form.first_name }}
+    </div>
+    <div>
+      <label for="id_last_name">Фамилия</label>
+      {{ form.last_name }}
+    </div>
+    <div>
+      <label for="id_date_of_birth">Дата рождения</label>
+      {{ form.date_of_birth }}
+    </div>
+    <div>
+      <label for="id_date_of_death">Дата смерти</label>
+      {{ form.date_of_death }}
+    </div>
+    <div></div>
+    <div class="author-biography">
+      <label for="id_biography">Биография</label>
+      {{ form.biography }}
+    </div>
+    <div class="submit-button">
+      <button type="submit">Сохранить изменения</button>
+    </div>
+  </form>
+</section>
+{% endblock %}

@@ -10,7 +10,11 @@
     </div>
     <div>
       <label for="id_role">Роль пользователя</label>
-      {{ form.role }}
+      <select id="id_role" name="role">
+        <option value="reader" {% if form.role.value == "reader" %} selected {% endif %}>Читатель</option>
+        <option value="librarian" {% if form.role.value == "librarian" %} selected {% endif %}>Библиотекарь</option>
+        <option value="admin" {% if form.role.value == "admin" %} selected {% endif %}>Администратор</option>
+      </select>
     </div>
     <div></div>
     <div></div>

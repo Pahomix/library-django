@@ -307,7 +307,7 @@ class UserCreateView(CreateView):
     :return: Ответ с формой создания нового пользователя или перенаправление на список пользователей при успешном создании.
     """
     model = CustomUser
-    fields = ['first_name', 'last_name', 'username', 'role']
+    fields = ['username', 'role']
     template_name = 'user_create.html'
     success_url = reverse_lazy('user_list')
     
